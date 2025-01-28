@@ -36,24 +36,24 @@ if uploaded_file is not None:
         st.subheader("Customer Probability of Purchase")
         
         # Display a scrollable table of customer id and probability of purchase
-        st.dataframe(df[['Customer ID', 'Purchase Probability']].set_index('Customer ID'))
+        st.dataframe(df.set_index('Customer ID'))
 
         # Create a gauge chart for each customer to display the probability of purchase
-        st.subheader("Purchase Probability Gauge")
-        for index, row in df.iterrows():
-            fig = go.Figure(go.Indicator(
-                mode = "gauge+number",
-                value = row['Purchase Probability'],
-                title = {'text': f"Customer {row['Customer ID']}"},
-                gauge = {'axis': {'range': [0, 1]},
-                         'bar': {'color': "darkblue"},
-                         'steps': [
-                             {'range': [0, 0.2], 'color': "red"},
-                             {'range': [0.2, 0.7], 'color': "yellow"},
-                             {'range': [0.7, 1], 'color': "green"}]
-                        }
-            ))
-            st.plotly_chart(fig)
+        #st.subheader("Purchase Probability Gauge")
+        #for index, row in df.iterrows():
+            #fig = go.Figure(go.Indicator(
+                #mode = "gauge+number",
+                #value = row['Purchase Probability'],
+                #title = {'text': f"Customer {row['Customer ID']}"},
+                #gauge = {'axis': {'range': [0, 1]},
+                         #'bar': {'color': "darkblue"},
+                         #'steps': [
+                             #{'range': [0, 0.2], 'color': "red"},
+                             #{'range': [0.2, 0.7], 'color': "yellow"},
+                             #{'range': [0.7, 1], 'color': "green"}]
+                        #}
+            #))
+            #st.plotly_chart(fig)
 
         # Shapley values display
         #st.subheader("Shapley Values for Selected Customer")
