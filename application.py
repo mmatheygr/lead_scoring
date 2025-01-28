@@ -45,7 +45,8 @@ if uploaded_file is not None:
         customer_row = df[df['Customer ID'] == customer_id].drop('Customer ID', axis=1)
         
         # Create a Shap explainer
-        explainer = shap.TreeExplainer(model)
+        model_estimator = model.named_steps['estimator']
+        explainer = shap.TreeExplainer(model_estimator)
         shap_values = explainer.shap_values(customer_row)
         
         # Plot the Shapley values for the selected customer
