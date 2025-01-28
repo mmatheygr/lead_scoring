@@ -28,8 +28,9 @@ if uploaded_file is not None:
         predictions = predict_model(model, data=df, raw_score=True)
 
          # Extract probabilities for class 1 (assuming binary classification)
-        probabilities = predictions['Score_1']  # Change to the column name corresponding to the positive class
-        df['Purchase Probability'] = probabilities
+        #probabilities = predictions['Score_1']  # Change to the column name corresponding to the positive class
+        #df['Purchase Probability'] = probabilities
+        df = df.merge(predictions, on='Customer ID', how='left')
                 
         # Display the table with customer ids and purchase probabilities
         st.subheader("Customer Probability of Purchase")
