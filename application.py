@@ -26,10 +26,11 @@ if uploaded_file is not None:
     if st.button('Process'):
         # Make predictions on the uploaded data
         predictions = predict_model(model, data=df, raw_score=True)
-        
-        # Get the predicted probabilities (for purchase)
-        df['Purchase Probability'] = predictions['Converted']
-        
+
+         # Extract probabilities for class 1 (assuming binary classification)
+        probabilities = predictions[['Score_1']]  # Change to the column name corresponding to the positive class
+        df['Purchase Probability'] = probabilities
+                
         # Display the table with customer ids and purchase probabilities
         st.subheader("Customer Probability of Purchase")
         
