@@ -25,7 +25,7 @@ if uploaded_file is not None:
     # Process the file when the "Process" button is clicked
     if st.button('Process'):
         # Make predictions on the uploaded data
-        predictions = predict_model(model, data=df)
+        predictions = predict_model(model, data=df, raw_score=True)
         
         # Get the predicted probabilities (for purchase)
         df['Purchase Probability'] = predictions['Converted']
