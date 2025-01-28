@@ -34,7 +34,7 @@ if uploaded_file is not None:
         st.subheader("Customer Probability of Purchase")
         
         # Display a scrollable table of customer id and probability of purchase
-        st.dataframe(df[['Customer ID', 'Purchase Probability']].set_index('CustomerID'))
+        st.dataframe(df[['Customer ID', 'Purchase Probability']].set_index('Customer ID'))
 
         # Create a gauge chart for each customer to display the probability of purchase
         st.subheader("Purchase Probability Gauge")
@@ -42,7 +42,7 @@ if uploaded_file is not None:
             fig = go.Figure(go.Indicator(
                 mode = "gauge+number",
                 value = row['Purchase Probability'],
-                title = {'text': f"Customer {row['CustomerID']}"},
+                title = {'text': f"Customer {row['Customer ID']}"},
                 gauge = {'axis': {'range': [0, 1]},
                          'bar': {'color': "darkblue"},
                          'steps': [
@@ -55,10 +55,10 @@ if uploaded_file is not None:
 
         # Shapley values display
         #st.subheader("Shapley Values for Selected Customer")
-        #customer_id = st.selectbox("Select Customer ID", df['CustomerID'].unique())
+        #customer_id = st.selectbox("Select Customer ID", df['Customer ID'].unique())
 
         # Get the row for the selected customer
-        #customer_row = df[df['CustomerID'] == customer_id].drop('CustomerID', axis=1)
+        #customer_row = df[df['Customer ID'] == customer_id].drop('Customer ID', axis=1)
         
         # Create a Shap explainer
         #explainer = shap.TreeExplainer(model)
