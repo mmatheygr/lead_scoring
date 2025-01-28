@@ -5,7 +5,7 @@ from pycaret.classification import load_model, predict_model
 import plotly.graph_objects as go
 
 # Load the pre-trained model
-model = load_model('lead_scoring_modelo.pkl')
+model = load_model('lead_scoring_modelo')
 
 # Streamlit UI
 st.title("Lead Scoring Application")
