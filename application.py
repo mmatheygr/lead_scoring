@@ -28,7 +28,7 @@ if uploaded_file is not None:
         predictions = predict_model(model, data=df, raw_score=True)
 
          # Extract probabilities for class 1 (assuming binary classification)
-        probabilities = predictions[['Converted_1']]  # Change to the column name corresponding to the positive class
+        probabilities = predictions['prediction_label_1]  # Change to the column name corresponding to the positive class
         df['Purchase Probability'] = probabilities
                 
         # Display the table with customer ids and purchase probabilities
