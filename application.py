@@ -38,7 +38,7 @@ def load_cached_model():
 model = load_cached_model()
 
 # Fixed threshold
-PROBABILITY_THRESHOLD = 0.53
+PROBABILITY_THRESHOLD = 0.51
 
 def main():
     # Title in main area
