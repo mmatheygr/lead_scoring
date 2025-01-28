@@ -28,7 +28,7 @@ if uploaded_file is not None:
         predictions = predict_model(model, data=df)
         
         # Get the predicted probabilities (for purchase)
-        df['Purchase Probability'] = predictions['Score']
+        df['Purchase Probability'] = predictions['Probability']
         
         # Display the table with customer ids and purchase probabilities
         st.subheader("Customer Probability of Purchase")
