@@ -55,18 +55,18 @@ if uploaded_file is not None:
             st.plotly_chart(fig)
 
         # Shapley values display
-        #st.subheader("Shapley Values for Selected Customer")
-        #customer_id = st.selectbox("Select Customer ID", df['Customer ID'].unique())
+        st.subheader("Shapley Values for Selected Customer")
+        customer_id = st.selectbox("Select Customer ID", df['Customer ID'].unique())
 
         # Get the row for the selected customer
-        #customer_row = df[df['Customer ID'] == customer_id].drop('Customer ID', axis=1)
+        customer_row = df[df['Customer ID'] == customer_id].drop('Customer ID', axis=1)
         
         # Create a Shap explainer
-        #explainer = shap.TreeExplainer(model)
-        #shap_values = explainer.shap_values(customer_row)
+        explainer = shap.TreeExplainer(model)
+        shap_values = explainer.shap_values(customer_row)
         
         # Plot the Shapley values for the selected customer
-        #shap.initjs()
-        #st_shap = shap.force_plot(explainer.expected_value[1], shap_values[1], customer_row)
-        #st.write(st_shap)
+        shap.initjs()
+        st_shap = shap.force_plot(explainer.expected_value[1], shap_values[1], customer_row)
+        st.write(st_shap)
 
