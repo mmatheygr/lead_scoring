@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-#import shap
+import shap
 from pycaret.classification import load_model, predict_model
 import plotly.graph_objects as go
 
