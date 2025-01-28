@@ -45,7 +45,7 @@ if uploaded_file is not None:
         customer_row = df[df['Customer ID'] == customer_id].drop('Customer ID', axis=1)
         
         # Create a Shap explainer
-        model_estimator = model.steps[-1][1]
+        model_estimator = model.named_steps['actual_estimator']
         explainer = shap.TreeExplainer(model_estimator)
         shap_values = explainer.shap_values(customer_row)
         
