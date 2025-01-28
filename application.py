@@ -28,32 +28,31 @@ if uploaded_file is not None:
         predictions = predict_model(model, data=df, raw_score=True)
 
          # Extract probabilities for class 1 (assuming binary classification)
-        #probabilities = predictions['Score_1']  # Change to the column name corresponding to the positive class
-        #df['Purchase Probability'] = probabilities
-        df = df.merge(predictions, on='Customer ID', how='left')
+        probabilities = predictions['prediction_score_1']  # Change to the column name corresponding to the positive class
+        df['Purchase Probability'] = probabilities
                 
         # Display the table with customer ids and purchase probabilities
         st.subheader("Customer Probability of Purchase")
         
         # Display a scrollable table of customer id and probability of purchase
-        st.dataframe(df.set_index('Customer ID'))
+        st.dataframe(df[['Customer ID', 'Purchase Probability']].set_index('Customer ID'))
 
         # Create a gauge chart for each customer to display the probability of purchase
-        #st.subheader("Purchase Probability Gauge")
-        #for index, row in df.iterrows():
-            #fig = go.Figure(go.Indicator(
-                #mode = "gauge+number",
-                #value = row['Purchase Probability'],
-                #title = {'text': f"Customer {row['Customer ID']}"},
-                #gauge = {'axis': {'range': [0, 1]},
-                         #'bar': {'color': "darkblue"},
-                         #'steps': [
-                             #{'range': [0, 0.2], 'color': "red"},
-                             #{'range': [0.2, 0.7], 'color': "yellow"},
-                             #{'range': [0.7, 1], 'color': "green"}]
-                        #}
-            #))
-            #st.plotly_chart(fig)
+        st.subheader("Purchase Probability Gauge")
+        for index, row in df.iterrows():
+            fig = go.Figure(go.Indicator(
+                mode = "gauge+number",
+                value = row['Purchase Probability'],
+                title = {'text': f"Customer {row['Customer ID']}"},
+                gauge = {'axis': {'range': [0, 1]},
+                         'bar': {'color': "darkblue"},
+                         'steps': [
+                             {'range': [0, 0.2], 'color': "red"},
+                             {'range': [0.2, 0.7], 'color': "yellow"},
+                             {'range': [0.7, 1], 'color': "green"}]
+                        }
+            ))
+            st.plotly_chart(fig)
 
         # Shapley values display
         #st.subheader("Shapley Values for Selected Customer")
