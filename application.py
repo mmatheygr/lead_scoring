@@ -34,7 +34,7 @@ if uploaded_file is not None:
         st.subheader("Customer Probability of Purchase")
         
         # Display a scrollable table of customer id and probability of purchase
-        st.dataframe(df[['CustomerID', 'Purchase Probability']].set_index('CustomerID'))
+        st.dataframe(df[['Customer ID', 'Purchase Probability']].set_index('CustomerID'))
 
         # Create a gauge chart for each customer to display the probability of purchase
         st.subheader("Purchase Probability Gauge")
